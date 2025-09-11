@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/server.js",
     "dev": "nodemon --watch src --ext ts,js,json --exec ts-node src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "create-admin": "ts-node src/scripts/user.script.ts"
   },
   "keywords": [],
   "author": "",
