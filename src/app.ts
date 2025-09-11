@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import cors from "cors";
 import userRoutes from './routes/user.routes';
 import pingRoutes from './routes/ping.routes';
 import eventRoutes from './routes/event.routes';
@@ -11,6 +12,15 @@ import resourceRoutes from './routes/resource.routes';
 import checklistRoutes from './routes/checklist.routes';
 
 const app = express();
+
+app.use(
+    cors({
+        origin: "http://localhost:5173",
+        methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: true,
+    })
+)
 
 // Middleware
 app.use(express.json());
