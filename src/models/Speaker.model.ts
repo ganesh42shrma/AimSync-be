@@ -20,10 +20,10 @@ export interface ISpeaker extends Document {
 }
 
 const speakerSchema = new Schema<ISpeaker>({
+  eventId:{ type: mongoose.Schema.Types.ObjectId, ref: 'Event', required: true },
   name: { type: String, required: true },
   bio: { type: String, required: true },
   photoUrl: { type: String, required: false },
-  eventId: { type: mongoose.Schema.Types.ObjectId, ref: 'Event', required: true },
   startTime: { type: Date, required: true },
   endTime: { type: Date, required: true },
   createdAt: { type: Date, default: Date.now },

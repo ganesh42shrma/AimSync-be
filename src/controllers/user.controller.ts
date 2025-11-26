@@ -13,6 +13,19 @@ export const createUser = async (req: ApiRequest, res: ApiResponse) => {
     }
 };
 
+export const getMe = async(req:ApiRequest, res:ApiResponse) =>{
+    try{
+        const userId = (req as any).user.id;
+        const user = await userService.getUserById(userId);
+        if(!user){
+            return sendError(res, 'User not found', HttpStatus.NOT_FOUND, 'User not found');
+        }
+        sendResponse(res,user,HttpStatus.OK,'User profile fetched successfully');
+    } catch(err: any){
+        sendError(res, err.message, HttpStatus.INTERNAL_SERVER_ERROR, 'Failed to fetch user profile');
+    }
+}
+
 export const getAllUsers = async (_req: ApiRequest, res: ApiResponse) => {
     try {
         const users = await userService.getAllUsers();
